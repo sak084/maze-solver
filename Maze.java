@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Maze {
-    char[][] maze;
-    Point start; //default start = first box
-    Point end; //default end = last box given the size of 2d array
-    ArrayList <Point> obstacles = new ArrayList<>();
-    int rowCount;
-    int colCount;
+    private char[][] maze;
+    private Point start; //default start = first box
+    private Point end; //default end = last box given the size of 2d array
+    private ArrayList <Point> obstacles = new ArrayList<>();
+    private int rowCount;
+    private int colCount;
 
 
     public Maze (int rowCount, int colCount) {
