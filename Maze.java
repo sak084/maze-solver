@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Maze {
     char[][] maze;
@@ -7,6 +8,7 @@ public class Maze {
     ArrayList <Point> obstacles = new ArrayList<>();
     int rowCount;
     int colCount;
+
 
     public Maze (int rowCount, int colCount) {
         if (rowCount<=0 || colCount<=0) {
@@ -17,9 +19,39 @@ public class Maze {
         start = new Point(0,0);
         end = new Point(rowCount-1, colCount-1);
         maze = new char[rowCount][colCount];
+        maze[0][0] = 'S';
+        maze[rowCount - 1][colCount - 1] = 'E';
     }
 
-    // add another constructor to randomize the map 
+    // constructor that randomizes the map given dimensions and number of obstacles
+    public Maze (int rowCount, int colCount, int numObstacles){
+        if (rowCount<=0 || colCount<=0) {
+            throw new IllegalArgumentException ("Maze dimensions be a positive integer");
+        }
+        if (numObstacles >= rowCount * colCount - 2){
+            throw new IllegalArgumentException("Number of obstacles cannot be greater than the grid");
+        }
+        this.rowCount = rowCount;
+        this.colCount = colCount;
+        start = new Point(0,0);
+        end = new Point(rowCount-1, colCount-1);
+        maze = new char[rowCount][colCount];
+        maze[0][0] = 'S';
+        maze[rowCount - 1][colCount - 1] = 'E';
+
+        Random random = new Random();
+        int currentObstacles = 0;
+        while (currentObstacles < numObstacles){
+            int randomRow = random.nextInt(rowCount);
+            int randomCol = random.nextInt(colCount);
+            if (!isObstacle(randomRow, randomCol) && !isStart(randomRow, randomCol) 
+                && !isEnd(randomRow, randomCol)){
+                setObstacles(randomRow, randomCol);
+                currentObstacles++;
+            } 
+        } 
+
+    }
 
     //getter methods
     public char[][] getMaze() {
@@ -36,6 +68,14 @@ public class Maze {
 
     public boolean isObstacle(int row, int column){
         return maze[row][column] == 'X';
+    }
+
+    public boolean isStart(int row, int column){
+        return maze[row][column] == 'S';
+    }
+
+    public boolean isEnd(int row, int column){
+        return maze[row][column] == 'E';
     }
 
     public int getRowCount(){
@@ -70,3 +110,4 @@ public class Maze {
         end = new Point(row, column);
     }
 }
+
