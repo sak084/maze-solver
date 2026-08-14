@@ -9,7 +9,6 @@ public class Maze {
     private int rowCount;
     private int colCount;
 
-
     public Maze (int rowCount, int colCount) {
         if (rowCount<=0 || colCount<=0) {
             throw new IllegalArgumentException ("Maze dimensions be a positive integer");
