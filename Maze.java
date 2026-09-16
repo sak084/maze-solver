@@ -1,3 +1,8 @@
+/**
+ * This class contains the code for a Maze object, which consists of a 2D array 
+ * with specified start/end/obstacle points. It contains public methods to modify
+ * instance variables and constuctors.
+ */
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -1,3 +1,10 @@
+/**
+ * This class contains the code for one Point object, and methods for 
+ * initializing the row/column instance variables and checking if two Points
+ * are equal.
+ */
+import java.util.Objects;
+
 public class Point {
     private int row;
     private int col;
@@ -28,5 +35,11 @@ public class Point {
         else {
             return false;
         }
+    }
+
+    // need this method because Point is a custom class & we are using it as a key in a HashMap/ in a HashSet
+    @Override
+    public int hashCode(){
+        return Objects.hash(row, col);
     }
 }
